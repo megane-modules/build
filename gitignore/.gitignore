@@ -28,6 +28,7 @@ logs/
 gradle/
 includes/
 .editorconfig
+gradle.properties
 gradlew
 gradlew.bat
 build.gradle
