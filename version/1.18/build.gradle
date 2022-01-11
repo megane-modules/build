@@ -20,7 +20,7 @@ sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
 def meganeModule(module) {
-    return "lol.bai.megane:megane" + module
+    return "lol.bai.megane:megane-" + module
 }
 
 repositories {
