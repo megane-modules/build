@@ -19,6 +19,10 @@ group = "lol.bai.megane"
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
+def meganeModule(module) {
+    return "lol.bai.megane:megane" + module
+}
+
 repositories {
     maven { url "https://maven.fabricmc.net/" }
     maven { url "https://maven.bai.lol" }
@@ -72,6 +76,30 @@ java {
 
 jar {
     from(rootProject.file("includes"))
+}
+
+publishing {
+    repositories {
+        maven {
+            url = uri("https://gitlab.com/api/v4/projects/25106863/packages/maven")
+            name = "GitLab"
+
+            credentials(HttpHeaderCredentials) {
+                name = "Private-Token"
+                value = System.getenv("GITLAB_TOKEN")
+            }
+
+            authentication {
+                header HttpHeaderAuthentication
+            }
+        }
+    }
+
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
 }
 
 if (file("extra.gradle").exists()) {
