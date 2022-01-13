@@ -56,6 +56,13 @@ echo "Saving build config"
 printf "$VERSION\n$PROJECT_NAME\n" > ".megane-build"
 printf "\nrootProject.name=\"megane-${PROJECT_NAME}\"\n" >> "settings.gradle"
 
+if [ -e "setup_extra" ]; then
+	echo
+	echo "Found setup_extra file, running that"
+	chmod +x setup_extra
+	./setup_extra
+fi
+
 echo "Done."
 
 s_exit 0
