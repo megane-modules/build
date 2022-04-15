@@ -3,7 +3,7 @@ build tools for megane modules
 
 ### First Setup
 ```sh
-wget "https://bai.lol/megane/setup"
+curl -O "https://bai.lol/megane/setup"
 chmod +x setup
 ./setup [version] [project_name]
 ```
