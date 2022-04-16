@@ -1,0 +1,36 @@
+#!/usr/bin/sh
+
+echo "Megane Module Project Bootstrap"
+echo
+
+read -e -p "Project Name: " INPUT_NAME </dev/tty
+if [[ -z "${INPUT_NAME// }" ]]; then
+	echo "Needs a project name"
+	exit 1
+fi
+
+read -e -p "Minecraft Minor Version: " INPUT_VERSION </dev/tty
+if [[ -z "${INPUT_VERSION// }" ]]; then
+	echo "Needs a version"
+	exit 1
+fi
+
+echo
+echo "Initializing module ${INPUT_NAME}"
+echo
+
+mkdir "$INPUT_NAME"
+cd "$INPUT_NAME"
+
+git init
+
+curl -sOL "https://bai.lol/megane/setup"
+chmod +x setup
+
+if ! ./setup "$INPUT_VERSION" "$INPUT_NAME"; then
+	cd ..
+	rm -rf "$INPUT_NAME"
+	exit 1
+fi
+
+echo "Run cd ${INPUT_NAME} to go to the folder"
